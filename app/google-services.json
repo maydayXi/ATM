@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1008157158668",
+    "firebase_url": "https://atmdb-859c1.firebaseio.com",
+    "project_id": "atmdb-859c1",
+    "storage_bucket": "atmdb-859c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008157158668:android:2c018baf118ab0a984ad29",
+        "android_client_info": {
+          "package_name": "com.home.atm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008157158668-i0fg8qg44bhdt55kec3pe1grtg4e7d6q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.home.atm",
+            "certificate_hash": "bc436af00226d250c81990a961e2633d5f5ccfc4"
+          }
+        },
+        {
+          "client_id": "1008157158668-p9f336pmliclfcfjpi5k0h2acvncm1k1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd9qFln2LsXLSnNii6Iw86jcnjEsoSUnc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1008157158668-p9f336pmliclfcfjpi5k0h2acvncm1k1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ATM</string>
+    <string name="login">登入</string>
+    <string name="quit">離開</string>
+    <string name="username">帳號</string>
+    <string name="password">密碼</string>
+    <string name="remember_username">記住帳號</string>
+    <string name="action_settings">設定</string>
+    <string name="logo">行動銀行</string>
+</resources>
