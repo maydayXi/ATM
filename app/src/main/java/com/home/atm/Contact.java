@@ -3,12 +3,12 @@ package com.home.atm;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Account {
+public class Contact {
     int _id;
     String name;
-    List<String> account_lst = new ArrayList<>();
+    List<String> contact_lst = new ArrayList<>();
 
-    Account(int _id, String name) {
+    Contact(int _id, String name) {
         this._id = _id;
         this.name = name;
     }
@@ -21,8 +21,8 @@ public class Account {
         return name;
     }
 
-    public List<String> getAccount_lst() {
-        return account_lst;
+    List<String> getContact_lst() {
+        return contact_lst;
     }
 
     public void set_id(int _id) {
@@ -33,7 +33,7 @@ public class Account {
         this.name = name;
     }
 
-    public void setAccount_lst(List<String> account_lst) {
-        this.account_lst = account_lst;
+    public void setContact_lst(List<String> contact_lst) {
+        this.contact_lst = contact_lst;
     }
 }
