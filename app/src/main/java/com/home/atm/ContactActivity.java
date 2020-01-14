@@ -5,7 +5,10 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -27,6 +30,8 @@ public class ContactActivity extends AppCompatActivity {
 
     private static final String TAG = ContactActivity.class.getSimpleName();
     private int REQUEST_CONTACTS = 200;
+    // 聯絡人資料的集合物件：包含姓名、電話號碼
+    private List<Contact> contactList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +67,32 @@ public class ContactActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_contact, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.actionUpload) {
+            // Upload to FireBase
+            // 先取得存放在 SharedPreferences 的 username
+            String username = getSharedPreferences("ATM", MODE_PRIVATE)
+                    .getString("USERNAME", null);
+            // 如果不是 null 則上傳至 FireBase
+            if (username != null) {
+                /*FirebaseDatabase.getInstance().getReference("users")
+                        .child(username)
+                        .child("contacts")
+                        .setValue(contactList);*/
+                Log.d(TAG, "onOptionsItemSelected: " +
+                        contactList.get(0).getContact_lst().get(0));
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     // 讀取聯絡人資料
     private void readContacts() {
         Cursor contactCursor = getContentResolver().query(
@@ -73,7 +104,7 @@ public class ContactActivity extends AppCompatActivity {
         );
 
         // 建立一個聯絡人的集合物件
-        List<Contact> contactList = new ArrayList<>();
+        contactList = new ArrayList<>();
         if (contactCursor != null) {
             while (contactCursor.moveToNext()) {
 
