@@ -8,4 +8,9 @@
     <string name="quit">Quit</string>
     <string name="remember_username">Remember Username</string>
     <string name="upload">Upload</string>
+    <string name="txt_date">Date</string>
+    <string name="txt_description">Description</string>
+    <string name="txt_amount">Amount</string>
+    <string name="btn_add">Add</string>
+    <string name="title_activity_investment" translatable="false">investmentActivity</string>
 </resources>

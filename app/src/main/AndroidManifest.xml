@@ -12,7 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AccountActivity"></activity>
+        <activity android:name=".TransActivity"></activity>
+        <activity android:name=".AddActivity" />
+        <activity
+            android:name=".investmentActivity"
+            android:label="@string/title_activity_investment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AccountActivity" />
         <activity android:name=".ContactActivity" />
         <activity android:name=".LoginActivity" />
         <activity

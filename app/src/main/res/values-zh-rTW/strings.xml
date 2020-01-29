@@ -9,4 +9,8 @@
     <string name="action_settings">設定</string>
     <string name="logo">行動銀行</string>
     <string name="upload">上傳</string>
+    <string name="txt_date">日期</string>
+    <string name="txt_description">說明</string>
+    <string name="txt_amount">金額</string>
+    <string name="btn_add">新增</string>
 </resources>

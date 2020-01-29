@@ -1,5 +1,6 @@
 package com.home.atm;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
@@ -31,32 +34,65 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         findViews();
 
-        cbRemUsername.setChecked(getSharedPreferences("ATM", MODE_PRIVATE)
-                .getBoolean("REMEMBER_USERNAME", false));
-        cbRemUsername.setOnCheckedChangeListener(
-                new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton,
-                                         boolean b) {
-                getSharedPreferences("ATM", MODE_PRIVATE)
-                        .edit()
-                        .putBoolean("REMEMBER_USERNAME", b)
-                        .apply();
+        new tTask().execute("https://tw.yahoo.com");
+    }
+
+    class tTask extends AsyncTask<String, Void, Integer> {
+
+        private int data;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.d(TAG, "onPreExecute: ");
+            Toast.makeText(LoginActivity.this, "onPreExecute", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            Log.d(TAG, "onPostExecute: " + integer);
+            Toast.makeText(LoginActivity.this, "onPostExecute：" + integer, Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Integer doInBackground(String... strings) {
+            try {
+                URL url = new URL(strings[0]);
+                data = url.openStream().read();
+                Log.d(TAG, "tTask: " + data);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        });
-
-        String userName = cbRemUsername.isChecked()?
-                getSharedPreferences("ATM", MODE_PRIVATE)
-                .getString("USERNAME", "")
-                :"";
-
-        edtUserName.setText(userName);
+            return data;
+        }
     }
 
     private void findViews() {
         edtUserName = findViewById(R.id.edtUserName);
         edtPwd = findViewById(R.id.edtPwd);
         cbRemUsername = findViewById(R.id.cbRemUsername);
+
+        cbRemUsername.setChecked(getSharedPreferences("ATM", MODE_PRIVATE)
+                .getBoolean("REMEMBER_USERNAME", false));
+        cbRemUsername.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton,
+                                                 boolean b) {
+                        getSharedPreferences("ATM", MODE_PRIVATE)
+                                .edit()
+                                .putBoolean("REMEMBER_USERNAME", b)
+                                .apply();
+                    }
+                });
+
+        String userName = cbRemUsername.isChecked()?
+                getSharedPreferences("ATM", MODE_PRIVATE)
+                        .getString("USERNAME", "")
+                :"";
+
+        edtUserName.setText(userName);
     }
 
     public void login(View view) {
