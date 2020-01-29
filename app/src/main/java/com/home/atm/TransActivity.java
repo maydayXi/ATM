@@ -68,7 +68,6 @@ public class TransActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 //                        parseJSON(targetStr);
-                        processViews();
                         parseGSON(targetStr);
                     }
                 });
