@@ -13,4 +13,5 @@
     <string name="txt_amount">Amount</string>
     <string name="btn_add">Add</string>
     <string name="title_activity_investment" translatable="false">investmentActivity</string>
+    <string name="txt_news">Latest News</string>
 </resources>

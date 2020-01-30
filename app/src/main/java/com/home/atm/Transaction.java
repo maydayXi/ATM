@@ -4,10 +4,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Transaction {
-    public String accountStr;
-    public String dateStr;
-    public int amountValue;
-    public int typeValue;
+    private String accountStr;
+    private String dateStr;
+    private int amountValue;
+    private int typeValue;
+
+    Transaction() {
+
+    }
 
     Transaction(String accountStr, String dateStr, int amountValue, int typeValue) {
         this.dateStr = dateStr;
@@ -27,7 +31,7 @@ public class Transaction {
         }
     }
 
-    public String getAccountStr() {
+    String getAccountStr() {
         return accountStr;
     }
 

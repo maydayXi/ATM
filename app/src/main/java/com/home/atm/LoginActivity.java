@@ -1,5 +1,9 @@
 package com.home.atm;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +24,8 @@ import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,14 +33,62 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtUserName;
     private EditText edtPwd;
     private CheckBox cbRemUsername;
+    private Intent serviceIntent;
+    private BroadcastReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.containerNews, NewsFragment.getInstance());
+        fragmentTransaction.commit();
+
+        serviceIntent = new Intent(this, TestService.class);
+        serviceIntent.putExtra("name","T1");
+        startService(serviceIntent);
+        serviceIntent.putExtra("name","T2");
+        startService(serviceIntent);
+        serviceIntent.putExtra("name","T3");
+        startService(serviceIntent);
+
         findViews();
 
         new tTask().execute("https://tw.yahoo.com");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initialReceiver();
+    }
+
+    // <summary> 建立接收器 </summary>
+    private void initialReceiver() {
+        // 建立 BroadcastReceiver 物件
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d(TAG, "onReceive: " + intent.getAction());
+            }
+        };
+
+        // 建立 IntentFilter 物件
+        IntentFilter filter = new IntentFilter(TestService.ACTION_DONE);
+
+        // registerReceiver 註冊廣播接收器
+        registerReceiver(receiver, filter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // 停止服務
+        stopService(serviceIntent);
+        // 停止接收器
+        unregisterReceiver(receiver);
     }
 
     class tTask extends AsyncTask<String, Void, Integer> {

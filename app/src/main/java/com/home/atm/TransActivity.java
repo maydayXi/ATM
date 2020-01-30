@@ -15,8 +15,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,14 +62,14 @@ public class TransActivity extends AppCompatActivity {
             // <summary> 執行成功的時候呼叫 </summary>
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                final String jsonStr = response.body().string();
+                final String jsonStr = Objects.requireNonNull(response.body()).string();
                 Log.d(TAG, "onResponse: targetStr = " + jsonStr);
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-//                        parseJSON(targetStr);
-                        parseGSON(jsonStr);
+                        parseJSON(jsonStr);
+//                        parseGSON(jsonStr);
                     }
                 });
             }
@@ -83,8 +85,8 @@ public class TransActivity extends AppCompatActivity {
 
     private void parseGSON(String jsonStr) {
         Gson gson = new Gson();
-        transactions = gson.fromJson(jsonStr,
-                new TypeToken<ArrayList<Transaction>>(){}.getType());
+        Type transType = new TypeToken<ArrayList<Transaction>>(){}.getType();
+        transactions = gson.fromJson(jsonStr, transType);
 
         for (int i = 0; i < transactions.size(); i++) {
             Log.d(TAG, "parseGSON: transactions[" + i + "].Account = "
