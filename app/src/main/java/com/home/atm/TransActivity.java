@@ -68,8 +68,8 @@ public class TransActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        parseJSON(jsonStr);
-//                        parseGSON(jsonStr);
+//                        parseJSON(jsonStr);
+                        parseGSON(jsonStr);
                     }
                 });
             }

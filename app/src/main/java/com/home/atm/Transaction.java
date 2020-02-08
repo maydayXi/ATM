@@ -4,64 +4,64 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Transaction {
-    private String accountStr;
-    private String dateStr;
-    private int amountValue;
-    private int typeValue;
+    private String account;
+    private String date;
+    private int amount;
+    private int type;
 
     Transaction() {
 
     }
 
-    Transaction(String accountStr, String dateStr, int amountValue, int typeValue) {
-        this.dateStr = dateStr;
-        this.accountStr = accountStr;
-        this.amountValue = amountValue;
-        this.typeValue = typeValue;
+    Transaction(String account, String date, int amount, int type) {
+        this.date = date;
+        this.account = account;
+        this.amount = amount;
+        this.type = type;
     }
 
     Transaction(JSONObject jsonObject) {
         try {
-            dateStr = jsonObject.getString("date");
-            accountStr = jsonObject.getString("account");
-            amountValue = jsonObject.getInt("amount");
-            typeValue = jsonObject.getInt("type");
+            date = jsonObject.getString("date");
+            account = jsonObject.getString("account");
+            amount = jsonObject.getInt("amount");
+            type = jsonObject.getInt("type");
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
     String getAccountStr() {
-        return accountStr;
+        return account;
     }
 
-    public void setAccountStr(String accountStr) {
-        this.accountStr = accountStr;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
-    public void setDateStr(String dateStr) {
-        this.dateStr = dateStr;
+    public void setDate(String date) {
+        this.date = date;
     }
 
 
-    public void setAmountValue(int amountValue) {
-        this.amountValue = amountValue;
+    public void setAmountValue(int amount) {
+        this.amount = amount;
     }
 
-    public void setTypeValue(int typeValue) {
-        this.typeValue = typeValue;
+    public void setTypeValue(int type) {
+        this.type = type;
     }
 
     String getDateStr() {
-        return dateStr;
+        return date;
     }
 
 
     int getAmountValue() {
-        return amountValue;
+        return amount;
     }
 
     int getTypeValue() {
-        return typeValue;
+        return type;
     }
 }
