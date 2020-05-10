@@ -14,4 +14,6 @@
     <string name="txt_amount">金額</string>
     <string name="btn_add">新增</string>
     <string name="txt_news">最新消息</string>
+    <string name="btn_map">地圖</string>
+    <string name="title_activity_maps">地圖</string>
 </resources>

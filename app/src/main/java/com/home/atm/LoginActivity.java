@@ -91,6 +91,10 @@ public class LoginActivity extends AppCompatActivity {
         unregisterReceiver(receiver);
     }
 
+    public void map(View view) {
+        startActivity(new Intent(this, MapsActivity.class));
+    }
+
     class tTask extends AsyncTask<String, Void, Integer> {
 
         private int data;
